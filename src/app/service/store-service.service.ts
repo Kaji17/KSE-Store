@@ -1,46 +1,95 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { IUser } from '../models/user';
+import { environment } from 'src/environments/environment';
 
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: 'my-auth-token'
+  })
+};
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class StoreServiceService {
 
-  constructor(private http: HttpClient ) { }
+  host = environment.host
 
-  // Récupération de la liste des Idées
-  public getIdea(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.host}`).pipe(
+  constructor(private http: HttpClient) { }
+
+  // Récupération de la liste des Products
+  public getProduct(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`${this.host}/getall`).pipe(
       catchError(this.handleError)
     )
   }
 
-   // Récupération d'une Idées par l'ID
-   public getIdeaById(id: number): Observable<IIdea> {
-    return this.http.get<IIdea>(`${this.host}/${id}`, httpOptions).pipe(
-      catchError(this.handleError)
+  //Création d'un nouvel product
+  public addProduct(user: IUser): Observable<IUser> {
+    return this.http.post<IUser>(`${this.host}/marchandise/add?marchandise=&file=`, user, httpOptions)
+  }
+
+  //Modification d'une product
+  public upDateProduct(id: number, user: IUser): Observable<Object> {
+    return this.http.put(`${this.host}/marchandise/update/${id}?marchandise=&file=`, user, httpOptions).pipe(
+      tap(ele => console.log("modifier avec succès", ele))
     )
   }
 
-  //Création d'une nouvelle idée
-  public addIdea(idea: IIdea): Observable<IIdea> {
-    return this.http.post<IIdea>(this.host, idea, httpOptions)
-  }
-
-  //Modification d'une idée
-  public upDateIdea(id: number, idea: IIdea): Observable<Object> {
-    return this.http.put(`${this.host}/${id}`, idea, httpOptions).pipe(
-      tap(ele =>console.log("modifier avec succès",ele ))
+  //Supprimer une product
+  public deleteProduct(id: number): Observable<Object> {
+    return this.http.delete(`${this.host}/marchandise/delete/${id}`, httpOptions).pipe(
+      tap(ele => console.log("supprimer", ele))
     )
   }
 
-  //Supprimer une idée
-  public deleteIdee(id: number): Observable<Object> {
-    return this.http.delete(`${this.host}/${id}`, httpOptions).pipe(
-      tap(ele =>console.log("supprimer",ele ))
-    )
+  public login(user: IUser): void {
+    const body = {
+      utilisateuremail: user.utilisateuremail,
+      utilisateurpassword: user.utilisateurpassword
+    };
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    this.http.post(`${this.host}/utilisateur/login`, body, { headers: headers, observe: 'response' }).subscribe(
+      (response: HttpResponse<any>) => {
+        // Récupérer le statut de la réponse
+        const status = response.status;
+        console.log('Statut de la requête :', status);
+        this.saveStatus(status)
+      },
+      (error) => {
+        // Erreur de la requête
+        this.saveStatus(error)
+        console.error('Erreur de connexion', error);
+      }
+    );
+
+
+  }
+
+  saveStatus(codeStatus: any): void {
+    // Convertir l'objet en chaîne JSON
+    const jsonData = JSON.stringify(codeStatus);
+
+    // Sauvegarder la chaîne JSON dans le localStorage avec une clé spécifique
+    localStorage.setItem('StatusCode', jsonData);
+  }
+
+  getStatus(): any {
+    // Récupérer la chaîne JSON depuis le localStorage avec la clé spécifique
+    const jsonData = localStorage.getItem('StatusCode');
+
+    // Convertir la chaîne JSON en objet
+    const data = JSON.parse(jsonData!);
+    return data;
   }
 
   private handleError(error: HttpErrorResponse) {

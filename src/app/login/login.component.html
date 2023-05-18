@@ -1,10 +1,18 @@
-<div class="container-md">
-  <div class="mb-3">
-    <label for="userMail" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="userMail" placeholder="user@example.com">
-  </div>
-  <div class="mb-3">
-    <label for="userPassword" class="form-label">Password</label>
-    <input type="password" class="form-control" id="userPassword" placeholder="123456">
-  </div>
-</div>
+<div class="container-sm my-smaller-container mt-5">
+  <h2 class="text-center">Login</h2>
+  <form (ngSubmit)="onsubmit(loginForm.form.value)" #loginForm="ngForm">
+    <div class="mb-3">
+      <label for="userMail" class="form-label">Email address</label>
+      <input type="email" #utilisateuremail="ngModel" [(ngModel)]="user.utilisateuremail" class="form-control"
+        id="userMail" placeholder="user@example.com" name="utilisateuremail">
+    </div>
+    <div class="mb-3">
+      <label for="userPassword" class="form-label">Password</label>
+      <input type="password" #utilisateurpassword="ngModel" [(ngModel)]="user.utilisateurpassword" class="form-control"
+        id="userPassword" placeholder="123456" name="utilisateurpassword">
+    </div>
+    <div class="btnLogin">
+      <button type="submit" class="btn btn-outline-primary">Login</button>
+    </div>
+  </form>
+  <span>{{ messageError }}<span>
