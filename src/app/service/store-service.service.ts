@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { IUser } from '../models/user';
 import { environment } from 'src/environments/environment';
+import { IProduct } from '../models/product';
 
 
 const httpOptions = {
@@ -23,8 +24,8 @@ export class StoreServiceService {
   constructor(private http: HttpClient) { }
 
   // Récupération de la liste des Products
-  public getProduct(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.host}/getall`).pipe(
+  public getProduct(): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(`${this.host}/marchandise/getall`).pipe(
       catchError(this.handleError)
     )
   }
@@ -35,7 +36,7 @@ export class StoreServiceService {
   }
 
   //Modification d'une product
-  public upDateProduct(id: number, user: IUser): Observable<Object> {
+  public upDateProduct(id: number, user: IProduct): Observable<Object> {
     return this.http.put(`${this.host}/marchandise/update/${id}?marchandise=&file=`, user, httpOptions).pipe(
       tap(ele => console.log("modifier avec succès", ele))
     )

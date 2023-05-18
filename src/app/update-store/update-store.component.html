@@ -1,1 +1,37 @@
-<p>update-store works!</p>
+<div class="container-sm my-smaller-container mt-5">
+  <h2 class="text-center">Update</h2>
+  <form (ngSubmit)="onsubmit(updateForm.form.value)" #updateForm="ngForm">
+    <div class="mb-3">
+      <label for="productEnable" class="form-label">Diplonibilité du produit</label>
+      <input type="text" #marchandiseenable="ngModel" [(ngModel)]="product.marchandiseenable" class="form-control"
+        id="productEnable" placeholder="true or false" name="marchandiseenable">
+    </div>
+
+    <div class="mb-3">
+      <label for="productImagePath" class="form-label">Image de la marchandise</label>
+      <input type="text" #marchandiseimagepath="ngModel" [(ngModel)]="product.marchandiseimagepath" class="form-control"
+        id="productImagePath" placeholder="http//.." name="marchandiseimagepath">
+    </div>
+
+    <div class="mb-3">
+      <label for="productName" class="form-label">Nom du produit</label>
+      <input type="text" #marchandisename="ngModel" [(ngModel)]="product.marchandisename" class="form-control"
+        id="productName" placeholder="Organge" name="marchandisename">
+    </div>
+
+    <div class="mb-3">
+      <label for="prodcutQuantity" class="form-label">Email address</label>
+      <input type="number" #marchandisequantity="ngModel" [(ngModel)]="product.marchandisequantity" class="form-control"
+        id="prodcutQuantity" placeholder="100" name="marchandisequantity">
+    </div>
+
+
+    <div class="mb-3">
+      <label for="productStatus" class="form-label">Email address</label>
+      <input type="text" #marchandisestatus="ngModel" [(ngModel)]="product.marchandisestatus" class="form-control"
+        id="productStatus" placeholder="status" name="marchandisestatus">
+    </div>
+    <div class="btnLogin">
+      <button type="submit" class="btn btn-outline-primary">Update</button>
+    </div>
+  </form>

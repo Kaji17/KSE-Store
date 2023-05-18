@@ -1,5 +1,5 @@
 export interface IProduct{
-  marchandiseid?: number| null;
+  marchandiseid?: number;
   marchandisedatecreation?: string| null;
   marchandiseenable?: boolean| null;
   marchandiseimagepath?: string|null;
