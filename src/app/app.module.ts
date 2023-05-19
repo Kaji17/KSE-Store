@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { UpdateStoreComponent } from './update-store/update-store.component';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
+import { AddStoreComponent } from './add-store/add-store.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HeaderComponent } from './header/header.component';
     LoginComponent,
     StoreComponent,
     UpdateStoreComponent,
-    HeaderComponent
+    HeaderComponent,
+    AddStoreComponent
   ],
   imports: [
     BrowserModule,

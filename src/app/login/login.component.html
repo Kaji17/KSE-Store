@@ -1,18 +1,46 @@
-<div class="container-sm my-smaller-container mt-5">
-  <h2 class="text-center">Login</h2>
-  <form (ngSubmit)="onsubmit(loginForm.form.value)" #loginForm="ngForm">
-    <div class="mb-3">
-      <label for="userMail" class="form-label">Email address</label>
-      <input type="email" #utilisateuremail="ngModel" [(ngModel)]="user.utilisateuremail" class="form-control"
-        id="userMail" placeholder="user@example.com" name="utilisateuremail">
+<div class="container-sm d-flex ">
+  <div class="container block ">
+    <div class="left">
+      <h2 class="text-left">Welcome back</h2>
+      <p>Welcome back! Please enter your details.</p>
+      <form (ngSubmit)="onsubmit(loginForm.form.value)" #loginForm="ngForm" class="mt-3 ">
+        <div class="mb-3">
+          <label for="userMail" class="form-label">Email address</label>
+          <input type="email" #utilisateuremail="ngModel" [(ngModel)]="user.utilisateuremail" class="form-control"
+            id="userMail" placeholder="user@example.com" name="utilisateuremail">
+        </div>
+        <div class="mb-3">
+          <label for="userPassword" class="form-label">Password</label>
+          <input type="password" #utilisateurpassword="ngModel" [(ngModel)]="user.utilisateurpassword"
+            class="form-control" id="userPassword" placeholder="123456" name="utilisateurpassword">
+        </div>
+
+        <div class="mb-3 d-flex">
+          <a href="#" class="link primary">Forgot password</a>
+        </div>
+
+        <div class="btnLogin">
+          <button type="submit" class="btn btn-outline-primary btnLogin">Login</button>
+          <button type="submit" class="btn btn-outline-secondary btnLogin mt-3">
+            <span></span>
+            Sing in with Google
+          </button>
+        </div>
+
+        <div class="mt-3 d-flex createAccount">
+          <span>Don't have an account?</span>
+          <a href="#" class="link primary">Sign up</a>
+        </div>
+      </form>
     </div>
-    <div class="mb-3">
-      <label for="userPassword" class="form-label">Password</label>
-      <input type="password" #utilisateurpassword="ngModel" [(ngModel)]="user.utilisateurpassword" class="form-control"
-        id="userPassword" placeholder="123456" name="utilisateurpassword">
+  </div>
+  <div class="container block right">
+
+    <div class="image">
+      <img src="../../assets/purple-circle-removebg-preview.png" alt="circle">
     </div>
-    <div class="btnLogin">
-      <button type="submit" class="btn btn-outline-primary">Login</button>
+    <div class="blur">
+
     </div>
-  </form>
-  <span>{{ messageError }}<span>
+  </div>
+</div>

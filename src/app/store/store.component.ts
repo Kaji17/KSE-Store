@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StoreServiceService } from '../service/store-service.service';
 import { IProduct } from '../models/product';
 import { Router } from '@angular/router';
+import { ProductTestService } from '../service/product-test.service';
 
 @Component({
   selector: 'app-store',
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
 export class StoreComponent implements OnInit {
 
   constructor(private servicestore: StoreServiceService,
-    private router : Router) { }
+    private router : Router,
+    private servicestoreTest: ProductTestService) { }
 
   products!: IProduct[]
   ngOnInit(): void {
@@ -26,13 +28,15 @@ export class StoreComponent implements OnInit {
   }
 
   loadAll(){
-    this.servicestore.getProduct().subscribe({
-      next: product => {
-        this.products = product
-        console.log('products:',this.products)
-      }
-    }
-    )
+    console.log(this.servicestoreTest.getProductTest())
+    this.products = this.servicestoreTest.getProductTest()
+    // this.servicestore.getProduct().subscribe({
+    //   next: product => {
+    //     this.products = product
+    //     console.log('products:',this.products)
+    //   }
+    // }
+    // )
   }
 
 }

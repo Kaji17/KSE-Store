@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
     if (this.storeService.getStatus() == 204) {
       this.messageError = "Error of connection"
       console.log( this.messageError)
+      //Baipasser la connexion
+      this.logged()
     }else{
       this.messageError = "Connection réussit"
       console.log( this.messageError)

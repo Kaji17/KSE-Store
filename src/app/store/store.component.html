@@ -3,7 +3,7 @@
 <div class="container-sm mt-5">
   <table class="table table-striped table-hover">
     <thead>
-      <tr>
+      <tr class="content">
         <th scope="col">ID</th>
         <th scope="col">IMAGE</th>
         <th scope="col">DATE DE CREATION</th>
@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody class="table-group-divider">
-      <tr *ngFor="let product of products">
+      <tr *ngFor="let product of products" class="content">
         <td>{{ product.marchandiseid }}</td>
         <td><img [src]="product.marchandiseimagepath" alt="produit" class="image"></td>
         <td>{{ product.marchandisedatecreation | date}}</td>
@@ -24,7 +24,7 @@
         <td>{{ product.marchandisequantity }}</td>
         <td>{{ product.marchandisestatus }}</td>
         <td>
-          <button type="button" class="btn btn-primary btn-sm mr-4" [routerLink]="['/update-product', product.marchandiseid]" >Modifier</button>
+          <button type="button" class="btn btn-primary btn-sm me-4" [routerLink]="['/update-product', product.marchandiseid]" >Modifier</button>
           <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(product.marchandiseid)">Supprimer</button>
         </td>
       </tr>

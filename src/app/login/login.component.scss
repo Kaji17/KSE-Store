@@ -1,8 +1,88 @@
-.my-smaller-container{
+.my-smaller-container {
   max-width: 50%;
 }
-.btnLogin{
+
+.btnLogin {
+  width: 100%;
+}
+
+.block {
+  height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  // align-items: center;
   justify-content: center;
+}
+
+.left {
+  max-width: 80%;
+  align-items: center;
+  justify-items: center;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.createAccount {
+  justify-content: center;
+}
+
+.right {
+  background-color: #efeff7;
+}
+
+.container-sm {
+  margin-right: 0px;
+  padding: 0px;
+}
+
+img {
+  max-width: 180px;
+  max-height: 180px;
+
+}
+
+.right {
+  position: relative;
+}
+
+.image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.blur {
+  position: absolute;
+  left: 50%;
+  top: 75%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  -webkit-backdrop-filter: blur(15px);
+  /* assure la compatibilité avec safari */
+  backdrop-filter: blur(15px);
+  background-color: rgba(182, 182, 182, 0.2);
+  width: 100%;
+  height: 50%;
+}
+
+@media screen and (max-width: 760px) {
+  .right{
+    display: none;
+  }
+
+  .container-sm {
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-right: auto;
+  }
+  .block{
+    align-items: center;
+  }
+  .left {
+    width: 100%;
+  }
 }
